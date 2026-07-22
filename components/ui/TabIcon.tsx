@@ -18,7 +18,7 @@ export default function TabIcon({ icon, label, focused }: TabIconProps) {
 
   return (
     <View style={styles.wrapper}>
-      <Ionicons name={iconName} size={20} color={color} />
+      <Ionicons name={iconName} size={24} color={color} />
       <Text style={[styles.label, { color }]} numberOfLines={1}>
         {label}
       </Text>
@@ -30,21 +30,20 @@ export default function TabIcon({ icon, label, focused }: TabIconProps) {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,               // every tab gets an equal share of the bar width
-    minHeight: 56,          // keeps the tap target accessible (Android min: 48dp)
+    minHeight: 48,          // Android min tap target
     minWidth: 48,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 3,
-    paddingTop: 8,
+    gap: 4,
   },
   label: {
     fontFamily: theme.fontFamily.bodySemibold,
-    fontSize: 10,
+    fontSize: 11,
     textAlign: 'center',
   },
   indicator: {
-    width: 14,
-    height: 2,
+    width: 16,
+    height: 3,
     borderRadius: theme.radius.full,
     marginTop: 2,
     backgroundColor: 'transparent',

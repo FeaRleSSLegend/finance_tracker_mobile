@@ -1,11 +1,16 @@
 // app/(tabs)/_layout.tsx
 import { Tabs } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { theme } from "../../constants/theme";
 import TabIcon from "../../components/ui/TabIcon";
 
 const { colors } = theme;
 
 export default function TabsLayout() {
+  const insets = useSafeAreaInsets();
+  // Small gap above the home indicator instead of sitting flush against it.
+  const bottomGap = insets.bottom > 0 ? insets.bottom : 8;
+
   return (
     <Tabs
       screenOptions={{
@@ -14,14 +19,13 @@ export default function TabsLayout() {
           backgroundColor: colors.black,
           borderTopWidth: 0,
           elevation: 0,
-          height: 60,                    // Reduced from 64
-          paddingBottom: 4,
-          paddingTop: 4,
+          height: 56 + bottomGap,
+          paddingBottom: bottomGap,
+          paddingTop: 8,
         },
         tabBarItemStyle: {
           paddingVertical: 0,
-          padding:8,
-          marginHorizontal: 0,           // Remove any extra margin
+          marginHorizontal: 0,
         },
         headerStyle: {
           backgroundColor: colors.black,
