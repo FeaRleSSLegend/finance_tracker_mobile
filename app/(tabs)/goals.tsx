@@ -3,11 +3,11 @@ import { theme } from "../../constants/theme";
 
 const { colors, spacing, fontFamily, fontSize } = theme;
 
-export default function TransactionsScreen() {
+export default function GoalScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Transactions</Text>
-      <Text style={styles.subtitle}>Your transaction history will appear here</Text>
+      <Text style={styles.title}>Goals</Text>
+      <Text style={styles.subtitle}>Watch your Goals, Touch the sky.</Text>
     </View>
   );
 }

@@ -11,52 +11,58 @@ export default function TabsLayout() {
       screenOptions={{
         tabBarActiveTintColor: colors.primary,
         tabBarStyle: {
-          backgroundColor: colors.black,},
+          backgroundColor: colors.black,
+          borderTopWidth: 0,
+          elevation: 0,
+          height: 60,                    // Reduced from 64
+          paddingBottom: 4,
+          paddingTop: 4,
+        },
+        tabBarItemStyle: {
+          paddingVertical: 0,
+          padding:8,
+          marginHorizontal: 0,           // Remove any extra margin
+        },
         headerStyle: {
           backgroundColor: colors.black,
+          elevation: 0,
+          shadowOpacity: 0,
+          borderBottomWidth: 0,
         },
         headerTintColor: colors.white,
         headerTitleStyle: {
           fontFamily: theme.fontFamily.display,
           fontSize: theme.fontSize.heading,
         },
-        tabBarShowLabel: false, // Hide default label since TabIcon has its own
+        tabBarShowLabel: false,
       }}
     >
       <Tabs.Screen
         name="home"
         options={{
           title: "Home",
-          tabBarIcon: ({ focused }) => (
-            <TabIcon icon="home" label="Home" focused={focused} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="transactions"
-        options={{
-          title: "Transactions",
-          tabBarIcon: ({ focused }) => (
-            <TabIcon icon="list" label="Transactions" focused={focused} />
-          ),
+          tabBarIcon: ({ focused }) => <TabIcon icon="home" label="Home" focused={focused} />,
         }}
       />
       <Tabs.Screen
         name="budget"
         options={{
           title: "Budget",
-          tabBarIcon: ({ focused }) => (
-            <TabIcon icon="wallet" label="Budget" focused={focused} />
-          ),
+          tabBarIcon: ({ focused }) => <TabIcon icon="wallet" label="Budget" focused={focused} />,
+        }}
+      />
+      <Tabs.Screen
+        name="goals"
+        options={{
+          title: "Goals",
+          tabBarIcon: ({ focused }) => <TabIcon icon="flag" label="Goals" focused={focused} />,
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: "Profile",
-          tabBarIcon: ({ focused }) => (
-            <TabIcon icon="person" label="Profile" focused={focused} />
-          ),
+          tabBarIcon: ({ focused }) => <TabIcon icon="person" label="Profile" focused={focused} />,
         }}
       />
     </Tabs>

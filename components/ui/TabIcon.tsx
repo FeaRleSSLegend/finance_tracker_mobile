@@ -2,13 +2,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 import { theme } from '../../constants/theme';
 
 type IoniconName = keyof typeof Ionicons.glyphMap;
 
 interface TabIconProps {
-  // pass the FILLED name, e.g. "home" — outline version is derived automatically
   icon: string;
   label: string;
   focused: boolean;
@@ -19,43 +17,39 @@ export default function TabIcon({ icon, label, focused }: TabIconProps) {
   const iconName = (focused ? icon : `${icon}-outline`) as IoniconName;
 
   return (
-    <View style={[styles.wrapper, focused && styles.wrapperActive]}>
-      <Ionicons name={iconName} size={22} color={color} />
-      <Text style={[styles.label, { color }]}>{label}</Text>
-      {focused && (
-        <LinearGradient
-          colors={theme.gradient.primary.colors}
-          start={theme.gradient.primary.start}
-          end={theme.gradient.primary.end}
-          style={styles.indicator}
-        />
-      )}
+    <View style={styles.wrapper}>
+      <Ionicons name={iconName} size={20} color={color} />
+      <Text style={[styles.label, { color }]} numberOfLines={1}>
+        {label}
+      </Text>
+      <View style={[styles.indicator, focused && styles.indicatorActive]} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   wrapper: {
-    minWidth: 64,
-    minHeight: 64,
+    flex: 1,               // every tab gets an equal share of the bar width
+    minHeight: 56,          // keeps the tap target accessible (Android min: 48dp)
+    minWidth: 48,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 4,
-    paddingVertical: 6,
-    paddingHorizontal: 10,
-    borderRadius: 14,
-  },
-  wrapperActive: {
-    backgroundColor: 'rgba(213, 35, 47, 0.08)',
+    gap: 3,
+    paddingTop: 8,
   },
   label: {
     fontFamily: theme.fontFamily.bodySemibold,
-    fontSize: theme.fontSize.caption,
+    fontSize: 10,
+    textAlign: 'center',
   },
   indicator: {
-    width: 16,
-    height: 3,
+    width: 14,
+    height: 2,
     borderRadius: theme.radius.full,
-    marginTop: 1,
+    marginTop: 2,
+    backgroundColor: 'transparent',
+  },
+  indicatorActive: {
+    backgroundColor: theme.colors.primary,
   },
 });
