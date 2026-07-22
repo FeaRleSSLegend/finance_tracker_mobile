@@ -1,149 +1,106 @@
 import { View, Text, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { theme } from "../../constants/theme";
+import { GlowBackground } from "../../components/onboarding/GlowBackground";
+import { ProgressDots } from "../../components/onboarding/ProgressDots";
+import { GradientButton } from "../../components/onboarding/GradientButton";
+import { Wordmark } from "../../components/onboarding/Wordmark";
 
-const { colors, spacing, fontSize, fontWeight, fontFamily, layout, radius } = theme;
+const { colors, spacing, fontSize, fontFamily, radius, layout } = theme;
+
+type FeatureRowProps = {
+  title: string;
+  description: string;
+};
+
+function FeatureRow({ title, description }: FeatureRowProps) {
+  return (
+    <View style={{ marginBottom: spacing.xxl }}>
+      <View style={{ flexDirection: "row", alignItems: "center", marginBottom: spacing.sm }}>
+        <View
+          style={{
+            width: 8,
+            height: 8,
+            borderRadius: radius.full,
+            backgroundColor: colors.primary,
+            marginRight: spacing.md,
+          }}
+        />
+        <Text
+          style={{
+            color: colors.white,
+            fontSize: fontSize.heading,
+            fontFamily: fontFamily.display,
+          }}
+        >
+          {title}
+        </Text>
+      </View>
+      <Text
+        style={{
+          color: colors.grayMedium,
+          fontSize: fontSize.body,
+          fontFamily: fontFamily.body,
+          paddingLeft: spacing.xl + spacing.sm,
+          lineHeight: 22,
+        }}
+      >
+        {description}
+      </Text>
+    </View>
+  );
+}
 
 export default function OnboardingScreen2() {
   const handleStart = () => {
-    // Navigate to Screen 3 (NOT the main app!)
     router.push("/(onboarding)/step3");
   };
 
   const handleLogin = () => {
-    // For now, go to main app (you'll connect to auth later)
     router.replace("/(tabs)");
   };
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.black }}>
       <StatusBar style="light" />
-      
-      <View style={{ 
-        flex: 1, 
-        justifyContent: "center", 
-        padding: spacing.xxl,
-        paddingTop: spacing.xxxxl,
-      }}>
-        {/* Brand Name */}
-        <Text style={{ 
-          color: colors.primary, 
-          fontSize: fontSize.displayLg, 
-          fontFamily: fontFamily.display,
-          marginBottom: spacing.xxxxl,
-        }}>
-          Zentra
-        </Text>
+      <GlowBackground />
 
-        {/* Feature 1 */}
-        <View style={{ marginBottom: spacing.xxxl }}>
-          <View style={{ 
-            flexDirection: "row", 
-            alignItems: "center", 
-            marginBottom: spacing.sm 
-          }}>
-            <View style={{ 
-              width: 8, 
-              height: 8, 
-              borderRadius: radius.full, 
-              backgroundColor: colors.primary, 
-              marginRight: spacing.md 
-            }} />
-            <Text style={{ 
-              color: colors.white, 
-              fontSize: fontSize.heading, 
-              fontFamily: fontFamily.display,
-            }}>
-              Build Wealth with Confidence
-            </Text>
-          </View>
-          <Text style={{ 
-            color: colors.grayMedium, 
-            fontSize: fontSize.body, 
-            fontFamily: fontFamily.body,
-            paddingLeft: spacing.xl + spacing.sm, 
-            lineHeight: 22,
-          }}>
-            Track your spending, grow your savings, and achieve your goals effortlessly.
-          </Text>
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ paddingHorizontal: spacing.xxl, paddingTop: spacing.lg }}>
+          <Wordmark />
         </View>
 
-        {/* Feature 2 */}
-        <View style={{ marginBottom: spacing.xxxl }}>
-          <View style={{ 
-            flexDirection: "row", 
-            alignItems: "center", 
-            marginBottom: spacing.sm 
-          }}>
-            <View style={{ 
-              width: 8, 
-              height: 8, 
-              borderRadius: radius.full, 
-              backgroundColor: colors.primary, 
-              marginRight: spacing.md 
-            }} />
-            <Text style={{ 
-              color: colors.white, 
-              fontSize: fontSize.heading, 
-              fontFamily: fontFamily.display,
-            }}>
-              Smart Financial Planning
-            </Text>
-          </View>
-          <Text style={{ 
-            color: colors.grayMedium, 
-            fontSize: fontSize.body, 
-            fontFamily: fontFamily.body,
-            paddingLeft: spacing.xl + spacing.sm, 
-            lineHeight: 22,
-          }}>
-            Make informed decisions with real-time insights and personalized recommendations.
-          </Text>
+        <View style={{ flex: 1, justifyContent: "center", paddingHorizontal: spacing.xxl }}>
+          <FeatureRow
+            title="Build Wealth with Confidence"
+            description="Track your spending, grow your savings, and achieve your goals effortlessly."
+          />
+          <FeatureRow
+            title="Smart Financial Planning"
+            description="Make informed decisions with real-time insights and personalized recommendations."
+          />
         </View>
-      </View>
 
-      {/* Bottom Section */}
-      <View style={{ 
-        padding: spacing.xxl, 
-        paddingBottom: layout.screenPaddingVertical,
-      }}>
-        <TouchableOpacity
-          style={{
-            backgroundColor: colors.primary,
-            paddingVertical: spacing.lg,
-            borderRadius: radius.md,
-            alignItems: "center",
-            marginBottom: spacing.md,
-          }}
-          onPress={handleStart}  // ← Goes to Screen 3
-        >
-          <Text style={{ 
-            color: colors.white, 
-            fontSize: fontSize.bodyLg, 
-            fontFamily: fontFamily.bodySemibold,
-          }}>
-            Start Planning
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={handleLogin}>
-          <Text style={{ 
-            color: colors.grayMedium, 
-            fontSize: fontSize.body, 
-            fontFamily: fontFamily.body,
-            textAlign: "center",
-          }}>
-            Already have an account?{' '}
-            <Text style={{ 
-              color: colors.primary, 
-              fontFamily: fontFamily.bodySemibold,
-            }}>
-              Log in
+        <View style={{ paddingHorizontal: spacing.xxl, paddingBottom: layout.screenPaddingVertical }}>
+          <ProgressDots total={3} activeIndex={1} />
+          <GradientButton label="Start Planning" onPress={handleStart} />
+          <TouchableOpacity style={{ marginTop: spacing.md }} onPress={handleLogin}>
+            <Text
+              style={{
+                color: colors.grayMedium,
+                fontSize: fontSize.body,
+                fontFamily: fontFamily.body,
+                textAlign: "center",
+              }}
+            >
+              Already have an account?{" "}
+              <Text style={{ color: colors.primary, fontFamily: fontFamily.bodySemibold }}>Log in</Text>
             </Text>
-          </Text>
-        </TouchableOpacity>
-      </View>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
     </View>
   );
 }

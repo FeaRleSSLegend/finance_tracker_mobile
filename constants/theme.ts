@@ -23,10 +23,23 @@ export const colors = {
   info: '#2196F3',
 } as const;
 
-// Gradients
+// Gradients - Multiple options for different uses
 export const gradient = {
+  // Primary gradient (red to dark red) - for buttons, indicators
   primary: {
-    colors: [colors.primary, colors.darkRed] as const,
+    colors: ['#D5232F', '#862127'] as const,
+    start: { x: 0, y: 0 },
+    end: { x: 1, y: 0 },
+  },
+  // Dark gradient (dark red to deepest red) - for dark accents
+  dark: {
+    colors: ['#862127', '#611117'] as const,
+    start: { x: 0, y: 0 },
+    end: { x: 1, y: 1 },
+  },
+  // Light gradient (primary to light) - for subtle effects
+  light: {
+    colors: ['#D5232F', '#E6E6E6'] as const,
     start: { x: 0, y: 0 },
     end: { x: 1, y: 0 },
   },

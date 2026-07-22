@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SplashScreen from 'expo-splash-screen';
 import { loadFonts } from "../constants/fonts";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const ONBOARDING_KEY = "hasSeenOnboarding";
 
@@ -53,12 +54,14 @@ export default function RootLayout() {
     }
 
     return (
-        <Stack screenOptions={{ headerShown: false }}>
-            {isFirstLaunch ? (
-                <Stack.Screen name="(onboarding)" />
-            ) : (
-                <Stack.Screen name="(tabs)" />
-            )}
-        </Stack>
+        <SafeAreaProvider>
+            <Stack screenOptions={{ headerShown: false }}>
+                {isFirstLaunch ? (
+                    <Stack.Screen name="(onboarding)" />
+                ) : (
+                    <Stack.Screen name="(tabs)" />
+                )}
+            </Stack>
+        </SafeAreaProvider>
     );
 }
