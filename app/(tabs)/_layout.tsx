@@ -4,11 +4,10 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { theme } from "../../constants/theme";
 import TabIcon from "../../components/ui/TabIcon";
 
-const { colors } = theme;
+const { colors, spacing } = theme;
 
 export default function TabsLayout() {
   const insets = useSafeAreaInsets();
-  // Small gap above the home indicator instead of sitting flush against it.
   const bottomGap = insets.bottom > 0 ? insets.bottom : 8;
 
   return (
@@ -19,13 +18,16 @@ export default function TabsLayout() {
           backgroundColor: colors.black,
           borderTopWidth: 0,
           elevation: 0,
-          height: 56 + bottomGap,
-          paddingBottom: bottomGap,
-          paddingTop: 8,
+          height: 64 + bottomGap,
+          paddingBottom: spacing.md,
+          paddingTop: 18,
+          justifyContent: 'center',  // ← Centers content vertically
         },
         tabBarItemStyle: {
           paddingVertical: 0,
           marginHorizontal: 0,
+          justifyContent: 'center',   // ← Centers content within each tab
+          alignItems: 'center',
         },
         headerStyle: {
           backgroundColor: colors.black,
@@ -39,6 +41,7 @@ export default function TabsLayout() {
           fontSize: theme.fontSize.heading,
         },
         tabBarShowLabel: false,
+        headerShown: false,
       }}
     >
       <Tabs.Screen

@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { theme } from "../../constants/theme";
+import { ResetOnboardingButton } from "../../components/ResetButton";
 
 const { colors, spacing, fontFamily, fontSize } = theme;
 
@@ -8,6 +9,7 @@ export default function BudgetScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Budget</Text>
       <Text style={styles.subtitle}>Track your budget here</Text>
+      <ResetOnboardingButton/>
     </View>
   );
 }
