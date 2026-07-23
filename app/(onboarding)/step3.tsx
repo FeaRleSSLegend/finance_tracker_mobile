@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
 import { theme } from "../../constants/theme";
+//import { MeshBackground } from "../../components/onboarding/MeshBackground";
 import { GlowBackground } from "../../components/onboarding/GlowBackground";
 import { GradientButton } from "../../components/onboarding/GradientButton";
 import { Wordmark } from "../../components/onboarding/Wordmark";
@@ -18,6 +19,7 @@ export default function OnboardingScreen3() {
     try {
       await AsyncStorage.setItem(ONBOARDING_KEY, "true");
       router.replace("/(tabs)");
+      router.push("/(tabs)/home")
     } catch (error) {
       console.error("Error saving onboarding status:", error);
       router.replace("/(tabs)");
@@ -27,7 +29,7 @@ export default function OnboardingScreen3() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.black }}>
       <StatusBar style="light" />
-      <GlowBackground />
+      <GlowBackground position="bottomRight" />
 
       <SafeAreaView style={{ flex: 1 }}>
         <View style={{ paddingHorizontal: spacing.xxl, paddingTop: spacing.lg }}>

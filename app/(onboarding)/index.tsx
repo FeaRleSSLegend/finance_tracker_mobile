@@ -3,6 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { theme } from "../../constants/theme";
+//import { MeshBackground } from "../../components/onboarding/MeshBackground";
 import { GlowBackground } from "../../components/onboarding/GlowBackground";
 import { ProgressDots } from "../../components/onboarding/ProgressDots";
 import { GradientButton } from "../../components/onboarding/GradientButton";
@@ -14,27 +15,19 @@ export default function OnboardingScreen1() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.black }}>
       <StatusBar style="light" />
-      <GlowBackground />
+      <GlowBackground position="top" />
 
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ paddingHorizontal: spacing.xxl, paddingTop: spacing.lg }}>
-          <Wordmark />
-        </View>
+      <SafeAreaView style={{ flex: 1, justifyContent: "flex-end" }}>
+        <View style={{ paddingHorizontal: spacing.xxl, paddingBottom: layout.screenPaddingVertical }}>
+          <View style={{ marginBottom: spacing.xxl }}>
+            <Wordmark />
+          </View>
 
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            paddingHorizontal: spacing.xxl,
-          }}
-        >
           <Text
             style={{
               color: colors.white,
               fontSize: fontSize.headingXl,
               fontFamily: fontFamily.display,
-              textAlign: "center",
               marginBottom: spacing.sm,
             }}
           >
@@ -44,8 +37,7 @@ export default function OnboardingScreen1() {
             style={{
               fontSize: fontSize.headingXl,
               fontFamily: fontFamily.display,
-              textAlign: "center",
-              marginBottom: spacing.xxl,
+              marginBottom: spacing.md,
             }}
           >
             <Text style={{ color: colors.white }}>Shape </Text>
@@ -57,16 +49,13 @@ export default function OnboardingScreen1() {
               color: colors.grayMedium,
               fontSize: fontSize.bodyLg,
               fontFamily: fontFamily.body,
-              textAlign: "center",
               lineHeight: 24,
-              paddingHorizontal: spacing.md,
+              marginBottom: spacing.xxl,
             }}
           >
             From saving smart to spending wise, your financial goals begin to rise.
           </Text>
-        </View>
 
-        <View style={{ paddingHorizontal: spacing.xxl, paddingBottom: layout.screenPaddingVertical }}>
           <ProgressDots total={3} activeIndex={0} />
           <GradientButton label="Next" onPress={() => router.push("/(onboarding)/step2")} />
           <TouchableOpacity

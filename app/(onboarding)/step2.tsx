@@ -65,14 +65,14 @@ export default function OnboardingScreen2() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.black }}>
       <StatusBar style="light" />
-      <GlowBackground />
+      <GlowBackground position="topRight" />
 
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ paddingHorizontal: spacing.xxl, paddingTop: spacing.lg }}>
-          <Wordmark />
-        </View>
+      <SafeAreaView style={{ flex: 1, justifyContent: "flex-end" }}>
+        <View style={{ paddingHorizontal: spacing.xxl, paddingBottom: layout.screenPaddingVertical }}>
+          <View style={{ marginBottom: spacing.xxl }}>
+            <Wordmark />
+          </View>
 
-        <View style={{ flex: 1, justifyContent: "center", paddingHorizontal: spacing.xxl }}>
           <FeatureRow
             title="Build Wealth with Confidence"
             description="Track your spending, grow your savings, and achieve your goals effortlessly."
@@ -81,9 +81,7 @@ export default function OnboardingScreen2() {
             title="Smart Financial Planning"
             description="Make informed decisions with real-time insights and personalized recommendations."
           />
-        </View>
 
-        <View style={{ paddingHorizontal: spacing.xxl, paddingBottom: layout.screenPaddingVertical }}>
           <ProgressDots total={3} activeIndex={1} />
           <GradientButton label="Start Planning" onPress={handleStart} />
           <TouchableOpacity style={{ marginTop: spacing.md }} onPress={handleLogin}>
