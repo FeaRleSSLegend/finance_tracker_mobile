@@ -7,6 +7,7 @@ import { BalanceCard } from "../../components/ui/BalanceCard";
 import { StatCard } from "../../components/ui/StatCard";
 import { SectionHeader } from "../../components/ui/SectionHeader";
 import { TransactionList, Transaction } from "../../components/ui/TransactionList";
+import { SpendingPieChart } from "../../components/ui/SpendingPieChart";
 
 const { colors, spacing, fontSize, fontFamily, radius } = theme;
 const POSITIVE = "#3DD68C";
@@ -61,6 +62,9 @@ export default function HomeScreen() {
             <StatCard key={index} {...stat} />
           ))}
         </View>
+          {/*Pie Chart*/}
+          <SectionHeader title="Spending Overview" sideLabel="Details" />
+          <SpendingPieChart />
 
         {/* Recent Transactions */}
         <SectionHeader title="Recent Transactions" />
